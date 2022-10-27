@@ -7,19 +7,23 @@
 <div class="container">
   <div class="input-group mb-3">
     <span class="input-group-text" id="basic-addon1">Car Name</span>
-    <input type="text" class="form-control" placeholder="Car Name" aria-label="Username" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" placeholder="Car Name" aria-label="carName" [(ngModel)]="car.carName" aria-describedby="basic-addon1">
   </div>
   <div class="input-group mb-3">
     <span class="input-group-text" id="basic-addon1">Number</span>
-    <input type="text" class="form-control" placeholder="Username" aria-label="Number" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" placeholder="Number" aria-label="number" [(ngModel)]="car.number" aria-describedby="basic-addon1">
   </div>
   <div class="input-group mb-3">
     <span class="input-group-text" id="basic-addon1">Color</span>
-    <input type="text" class="form-control" placeholder="Username" aria-label="Color" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" placeholder="Color" aria-label="color" [(ngModel)]="car.color" aria-describedby="basic-addon1">
   </div>
   <div class="input-group mb-3">
     <span class="input-group-text" id="basic-addon1">Type</span>
-    <input type="text" class="form-control" placeholder="Username" aria-label="Type" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" placeholder="Type" aria-label="type" [(ngModel)]="car.type" aria-describedby="basic-addon1">
+  </div>
+
+  <div class="row">
+    <button type="button" (click)="save()" class="btn btn-success">Save</button>
   </div>
 </div>
 
