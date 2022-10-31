@@ -39,4 +39,7 @@ export class AddCarComponent implements OnInit {
     }
   }
 
+  goBack(){
+    this.router.navigate(['car-list'])
+  }
 }

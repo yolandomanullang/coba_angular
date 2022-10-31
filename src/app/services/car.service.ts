@@ -10,6 +10,10 @@ export class CarService {
   constructor(private httpClient:HttpClient) { }
 
   addNewCar(car: Car){
-    return this.httpClient.post("/api/api/car/addNewCar",car)
+    return this.httpClient.post<any>("/api/api/car/addNewCar",car)
+  }
+
+  getAllCar(){
+    return this.httpClient.get<any>("/api/api/car/getAllCar")
   }
 }

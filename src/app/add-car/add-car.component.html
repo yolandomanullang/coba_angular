@@ -4,7 +4,7 @@
     color
     type -->
 <div class="row">
-  <h1>Add Car Component </h1>
+  <h1>Add Car Component</h1>
 </div>
 <div class="container">
   <div class="input-group mb-3">
@@ -25,7 +25,12 @@
   </div>
 
   <div class="row">
-    <button type="button" (click)="save()" class="btn btn-success">Save</button>
+    <div class="col-6">
+      <button type="button" (click)="goBack()" class="btn btn-secondary">Cancel</button>
+    </div>
+    <div class="col-6 text-end">
+      <button type="button" (click)="save()" class="btn btn-success">Save</button>
+    </div>
   </div>
 </div>
 
