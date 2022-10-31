@@ -14,6 +14,7 @@
         <th scope="col">Number</th>
         <th scope="col">Type</th>
         <th scope="col">Color</th>
+        <th class="col">Action</th>
       </tr>
     </thead>
     <tbody *ngIf="carList.length > 0">
@@ -23,6 +24,7 @@
         <td>{{car.number}}</td>
         <td>{{car.color}}</td>
         <td>{{car.type}}</td>
+        <td><button class="btn" (click)="editCar(car)" ><i class="fa fa-pencil-square" aria-hidden="true"></i></button></td>
       </tr>
     <tbody *ngIf="carList.length == 0">
       <tr>

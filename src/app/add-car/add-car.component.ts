@@ -10,36 +10,45 @@ import { CarService } from '../services/car.service';
 })
 export class AddCarComponent implements OnInit {
 
+  titlePage : String = "Add New Car"
   car = new Car()
 
-  constructor(private carService:CarService, private router: Router) { }
+  constructor(private carService: CarService, private router: Router) { }
 
   ngOnInit(): void {
+    if (history.state) {
+      const s = history.state;
+      if (s.data != undefined) {
+        this.car = s.data
+        this.titlePage = "Edit Data Car"
+      }
+
+    }
   }
-  
-  save(){
-    if(this.car.carName == undefined){
+
+  save() {
+    if (this.car.carName == undefined) {
       alert("Car Name wajib diisi")
-    }else if(this.car.number == undefined){
+    } else if (this.car.number == undefined) {
       alert("Car number wajib diisi")
-    }else if(this.car.color == undefined){
+    } else if (this.car.color == undefined) {
       alert("Car color wajib diisi")
-    }else if(this.car.type == undefined){
+    } else if (this.car.type == undefined) {
       alert("Car Type wajib diisi")
-    }else{
+    } else {
       this.carService.addNewCar(this.car).subscribe(
-        data =>{
+        data => {
           console.log(data)
           this.router.navigate(['car-list'])
-        } 
-      ),(error: any)  => {
+        }
+      ), (error: any) => {
         console.log(error)
-        
+
       }
     }
   }
 
-  goBack(){
+  goBack() {
     this.router.navigate(['car-list'])
   }
 }

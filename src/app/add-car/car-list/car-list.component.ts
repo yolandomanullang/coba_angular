@@ -12,7 +12,7 @@ export class CarListComponent implements OnInit {
 
   carList: Car[] = []
 
-  constructor(private router: Router, private carService : CarService) { }
+  constructor(private router: Router, private carService: CarService) { }
 
   ngOnInit(): void {
     this.getAllCar()
@@ -22,16 +22,20 @@ export class CarListComponent implements OnInit {
     this.router.navigate(['add-car'])
   }
 
-  getAllCar(){
+  getAllCar() {
     this.carService.getAllCar().subscribe(
       data => {
         console.log(data)
         this.carList = data.datas
       },
-      error =>{
+      error => {
 
       }
     )
+  }
+  editCar(car: Car) {
+    console.log(car)
+    this.router.navigate(['add-car'], { state: { data: car } })
   }
 
 }
