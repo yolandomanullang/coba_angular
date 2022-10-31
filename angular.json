@@ -68,7 +68,8 @@
               "browserTarget": "car-crud:build:production"
             },
             "development": {
-              "browserTarget": "car-crud:build:development"
+              "browserTarget": "car-crud:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

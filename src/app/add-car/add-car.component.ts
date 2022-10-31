@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Car } from '../models/car';
+import { CarService } from '../services/car.service';
 
 @Component({
   selector: 'app-add-car',
@@ -10,13 +11,30 @@ export class AddCarComponent implements OnInit {
 
   car = new Car()
 
-  constructor() { }
+  constructor(private carService:CarService) { }
 
   ngOnInit(): void {
   }
   
   save(){
-    return console.log(this.car);
+    if(this.car.carName == undefined){
+      alert("Car Name wajib diisi")
+    }else if(this.car.number == undefined){
+      alert("Car number wajib diisi")
+    }else if(this.car.color == undefined){
+      alert("Car color wajib diisi")
+    }else if(this.car.type == undefined){
+      alert("Car Type wajib diisi")
+    }else{
+      this.carService.addNewCar(this.car).subscribe(
+        data =>{
+          console.log(data)
+        } 
+      ),(error: any)  => {
+        console.log(error)
+        
+      }
+    }
   }
 
 }
