@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Car } from 'src/app/models/car';
 import { CarService } from 'src/app/services/car.service';
+import { CommonAlert } from 'src/app/shared/common-alert';
 
 @Component({
   selector: 'app-car-list',
@@ -12,7 +13,7 @@ export class CarListComponent implements OnInit {
 
   carList: Car[] = []
 
-  constructor(private router: Router, private carService: CarService) { }
+  constructor(private router: Router, private carService: CarService, private commonAlert:CommonAlert) { }
 
   ngOnInit(): void {
     this.getAllCar()
@@ -36,6 +37,16 @@ export class CarListComponent implements OnInit {
   editCar(car: Car) {
     console.log(car)
     this.router.navigate(['add-car'], { state: { data: car } })
+  }
+
+  delete(car: Car) {
+    this.carService.deleteCar(car.id!).subscribe(
+      data => {
+        this.getAllCar()
+      }, error => {
+        this.commonAlert.showErrorAlert(error.message)
+      }
+    )
   }
 
 }

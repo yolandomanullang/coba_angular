@@ -16,4 +16,7 @@ export class CarService {
   getAllCar(){
     return this.httpClient.get<any>("/api/api/car/getAllCar")
   }
+  deleteCar(carId : number){
+    return this.httpClient.get<any>(`/api/api/car/deleteCar?id=${carId}`);
+  }
 }

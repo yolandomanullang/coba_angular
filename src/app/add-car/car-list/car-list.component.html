@@ -1,5 +1,7 @@
 <div class="row mt-5 mb-3">
-  <div class="col-8"> <h1>Car List</h1></div>
+  <div class="col-8">
+    <h1>Car List</h1>
+  </div>
   <div class="col-4 text-end">
     <button type="button" (click)="addCar()" class="btn btn-success">Add New Car</button>
   </div>
@@ -24,7 +26,14 @@
         <td>{{car.number}}</td>
         <td>{{car.color}}</td>
         <td>{{car.type}}</td>
-        <td><button class="btn" (click)="editCar(car)" ><i class="fa fa-pencil-square" aria-hidden="true"></i></button></td>
+        <td class="col-1">
+          <button class="btn" (click)="editCar(car)">
+            <i class="fa fa-pencil-square" aria-hidden="true"></i>
+          </button>
+          <button class="btn" (click)="delete(car)">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+        </td>
       </tr>
     <tbody *ngIf="carList.length == 0">
       <tr>
