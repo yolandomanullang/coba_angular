@@ -3,6 +3,7 @@ import { Route, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Car } from '../models/car';
 import { CarService } from '../services/car.service';
+import { CommonAlert } from '../shared/common-alert';
 
 @Component({
   selector: 'app-add-car',
@@ -11,10 +12,10 @@ import { CarService } from '../services/car.service';
 })
 export class AddCarComponent implements OnInit {
 
-  titlePage: String = "Add New Car"
+  titlePage: string = "Add New Car"
   car = new Car()
 
-  constructor(private carService: CarService, private router: Router) { }
+  constructor(private carService: CarService, private router: Router, private commonAlert:CommonAlert) { }
 
   ngOnInit(): void {
     if (history.state) {
@@ -29,48 +30,21 @@ export class AddCarComponent implements OnInit {
 
   save() {
     if (this.car.carName == undefined) {
-      alert("Car Name wajib diisi")
+      this.commonAlert.showWarningAlert("Car Name wajib diisi")
     } else if (this.car.number == undefined) {
-      alert("Car number wajib diisi")
+      this.commonAlert.showWarningAlert("Car number wajib diisi")
     } else if (this.car.color == undefined) {
-      alert("Car color wajib diisi")
+      this.commonAlert.showWarningAlert("Car color wajib diisi")
     } else if (this.car.type == undefined) {
-      alert("Car Type wajib diisi")
+      this.commonAlert.showWarningAlert("Car Type wajib diisi")
     } else {
-      //   this.carService.addNewCar(this.car).subscribe(
-      //     data => {
-      //       console.log(data)
-      //       Swal.fire(
-      //         'Good job!',
-      //         'You clicked the button!',
-      //         'success'
-      //       )
-      //       this.router.navigate(['car-list'])
-      //     }, error => {
-      //       console.log("Error => " + error)
-      //       Swal.fire(
-      //         'Error!',
-      //         error,
-      //         'error'
-      //       )
-      //     }
-      // }
       this.carService.addNewCar(this.car).subscribe(
         data => {
           console.log(data)
-          Swal.fire(
-            'Good job!',
-            'You clicked the button!',
-            'success'
-          )
-          this.router.navigate(['car-list'])
+          this.commonAlert.showSuksesAlert(this.titlePage,'car-list')
         }, error => {
           console.log("Error => " + error)
-          Swal.fire(
-            'Error!',
-            error.message,
-            'error'
-          )
+          this.commonAlert.showErrorAlert(error.message)
         }
       )
     }
