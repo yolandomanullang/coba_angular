@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Car } from '../models/car';
 import { CarService } from '../services/car.service';
 
@@ -10,7 +11,7 @@ import { CarService } from '../services/car.service';
 })
 export class AddCarComponent implements OnInit {
 
-  titlePage : String = "Add New Car"
+  titlePage: String = "Add New Car"
   car = new Car()
 
   constructor(private carService: CarService, private router: Router) { }
@@ -36,15 +37,42 @@ export class AddCarComponent implements OnInit {
     } else if (this.car.type == undefined) {
       alert("Car Type wajib diisi")
     } else {
+      //   this.carService.addNewCar(this.car).subscribe(
+      //     data => {
+      //       console.log(data)
+      //       Swal.fire(
+      //         'Good job!',
+      //         'You clicked the button!',
+      //         'success'
+      //       )
+      //       this.router.navigate(['car-list'])
+      //     }, error => {
+      //       console.log("Error => " + error)
+      //       Swal.fire(
+      //         'Error!',
+      //         error,
+      //         'error'
+      //       )
+      //     }
+      // }
       this.carService.addNewCar(this.car).subscribe(
         data => {
           console.log(data)
+          Swal.fire(
+            'Good job!',
+            'You clicked the button!',
+            'success'
+          )
           this.router.navigate(['car-list'])
+        }, error => {
+          console.log("Error => " + error)
+          Swal.fire(
+            'Error!',
+            error.message,
+            'error'
+          )
         }
-      ), (error: any) => {
-        console.log(error)
-
-      }
+      )
     }
   }
 
